@@ -12,6 +12,10 @@ TaskPilot provides a seamless way to manage development tasks directly within VS
 - Identify the next most important task to work on
 - Assess task complexity with AI assistance
 
+## Repository
+
+[Source code](https://github.com/rakid/taskPilot)
+
 ## Features
 
 ### Task Management

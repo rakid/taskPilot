@@ -2,7 +2,7 @@
   "name": "task-pilot",
   "displayName": "TaskPilot",
   "description": "AI-assisted task management system for efficient project planning and execution",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "publisher": "rakbro64",
   "license": "MIT",
   "licenseFile": "LICENSE",
