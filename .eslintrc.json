@@ -1,0 +1,18 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
+  "rules": {
+    // Add any project-specific rules or overrides here
+    // Example: Allow console logs (useful during development)
+    "no-console": "off",
+    // Enforce double quotes
+    "@typescript-eslint/quotes": ["error", "double"],
+    // Example: Allow unused variables starting with _
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }
+    ]
+  }
+}

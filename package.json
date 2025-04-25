@@ -1,0 +1,222 @@
+{
+  "name": "task-pilot",
+  "displayName": "TaskPilot",
+  "description": "AI-assisted task management system for efficient project planning and execution",
+  "version": "0.1.0",
+  "publisher": "rakbro64",
+  "license": "MIT",
+  "licenseFile": "LICENSE",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rakid/taskPilot.git"
+  },
+  "categories": [
+    "Other"
+  ],
+  "icon": "resources/icons/icon.png",
+  "main": "./out/extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "task-pilot.init",
+        "title": "TaskPilot: Initialize",
+        "icon": "$(file-add)"
+      },
+      {
+        "command": "task-pilot.parsePrd",
+        "title": "TaskPilot: Parse PRD into Tasks",
+        "icon": "$(symbol-file)"
+      },
+      {
+        "command": "task-pilot.expandTask",
+        "title": "TaskPilot: Expand Task into Subtasks",
+        "icon": "$(list-tree)"
+      },
+      {
+        "command": "task-pilot.addTaskWithAI",
+        "title": "TaskPilot: Add Task using AI",
+        "icon": "$(light-bulb)"
+      },
+      {
+        "command": "task-pilot.addTask",
+        "title": "TaskPilot: Add Task Manually",
+        "icon": "$(add)"
+      },
+      {
+        "command": "task-pilot.setTaskStatus",
+        "title": "TaskPilot: Set Task Status",
+        "icon": "$(pencil)"
+      },
+      {
+        "command": "task-pilot.manageDependencies",
+        "title": "TaskPilot: Manage Task Dependencies",
+        "icon": "$(references)"
+      },
+      {
+        "command": "task-pilot.nextTask",
+        "title": "TaskPilot: Find Next Available Task",
+        "icon": "$(play)"
+      },
+      {
+        "command": "task-pilot.assessTaskComplexity",
+        "title": "TaskPilot: Assess Task Complexity",
+        "icon": "$(graph)"
+      },
+      {
+        "command": "task-pilot.assessAllTasksComplexity",
+        "title": "TaskPilot: Assess Complexity for All Tasks",
+        "icon": "$(graph-line)"
+      },
+      {
+        "command": "task-pilot.updateTaskComplexity",
+        "title": "TaskPilot: Update Task Complexity Manually",
+        "icon": "$(edit)"
+      },
+      {
+        "command": "task-pilot.showTaskDetails",
+        "title": "TaskPilot: Show Task Details",
+        "icon": "$(info)"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "task-pilot",
+          "title": "TaskPilot",
+          "icon": "resources/icons/taskpilot-icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "task-pilot": [
+        {
+          "id": "taskPilotTasks",
+          "name": "Tasks",
+          "icon": "resources/icons/taskpilot-icon.svg"
+        }
+      ]
+    },
+    "menus": {
+      "view/item/context": [
+        {
+          "command": "task-pilot.setTaskStatus",
+          "when": "view == taskPilotTasks && viewItem == task",
+          "group": "inline"
+        },
+        {
+          "command": "task-pilot.expandTask",
+          "when": "view == taskPilotTasks && viewItem == task",
+          "group": "inline"
+        },
+        {
+          "command": "task-pilot.manageDependencies",
+          "when": "view == taskPilotTasks && viewItem == task"
+        },
+        {
+          "command": "task-pilot.assessTaskComplexity",
+          "when": "view == taskPilotTasks && viewItem == task"
+        },
+        {
+          "command": "task-pilot.showTaskDetails",
+          "when": "view == taskPilotTasks && viewItem == task",
+          "group": "navigation@1"
+        }
+      ],
+      "editor/title": [
+        {
+          "command": "task-pilot.addTask",
+          "group": "navigation",
+          "when": "resourceLangId == markdown || resourceLangId == plaintext"
+        },
+        {
+          "command": "task-pilot.parsePrd",
+          "group": "navigation",
+          "when": "resourceLangId == markdown || resourceLangId == plaintext"
+        },
+        {
+          "command": "task-pilot.nextTask",
+          "group": "navigation"
+        },
+        {
+          "command": "task-pilot.init",
+          "group": "navigation"
+        }
+      ],
+      "view/title": [
+        {
+          "command": "task-pilot.init",
+          "when": "view == taskPilotTasks",
+          "group": "navigation",
+          "icon": "$(file-add)"
+        },
+        {
+          "command": "task-pilot.parsePrd",
+          "when": "view == taskPilotTasks",
+          "group": "navigation",
+          "icon": "$(symbol-file)"
+        },
+        {
+          "command": "task-pilot.addTask",
+          "when": "view == taskPilotTasks",
+          "group": "navigation",
+          "icon": "$(add)"
+        },
+        {
+          "command": "task-pilot.nextTask",
+          "when": "view == taskPilotTasks",
+          "group": "navigation",
+          "icon": "$(play)"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "TaskPilot",
+      "properties": {
+        "taskPilot.tasksFilePath": {
+          "type": "string",
+          "default": "tasks.json",
+          "description": "Path to the tasks.json file, relative to the workspace root"
+        },
+        "taskPilot.generatedTasksDir": {
+          "type": "string",
+          "default": "tasks",
+          "description": "Directory to store generated tasks and subtasks"
+        },
+        "taskPilot.complexityThreshold": {
+          "type": "number",
+          "default": 4,
+          "description": "Threshold for highlighting high-complexity tasks"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js",
+    "package": "vsce package -o artifacts/"
+  },
+  "devDependencies": {
+    "@types/glob": "^8.1.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^16.18.34",
+    "@types/vscode": "^1.80.0",
+    "@typescript-eslint/eslint-plugin": "^5.59.8",
+    "@typescript-eslint/parser": "^5.59.8",
+    "@vscode/test-electron": "^2.3.2",
+    "@vscode/vsce": "^2.19.0",
+    "eslint": "^8.41.0",
+    "glob": "^11.0.1",
+    "mocha": "^11.1.0",
+    "typescript": "^5.1.3"
+  }
+}

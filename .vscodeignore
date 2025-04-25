@@ -1,0 +1,13 @@
+.vscode/**
+.vscode-test/**
+.gitignore
+vsc-extension-quickstart.md
+**/*.ts
+**/*.map
+.eslintrc.json
+tsconfig.json
+node_modules/
+src/
+tasks.json.example
+copilot-task-weaver-spec.md
+.git/ 

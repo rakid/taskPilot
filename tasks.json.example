@@ -1,0 +1,157 @@
+[
+  {
+    "id": 1,
+    "title": "Set up VSCode Extension project structure",
+    "description": "Create basic project structure with TypeScript configuration",
+    "status": "done",
+    "dependencies": [],
+    "priority": "high",
+    "subtasks": [
+      {
+        "id": 1,
+        "parentId": 1,
+        "title": "Initialize npm project",
+        "status": "done"
+      },
+      {
+        "id": 2,
+        "parentId": 1,
+        "title": "Configure TypeScript",
+        "status": "done"
+      }
+    ],
+    "complexity": {
+      "level": "simple",
+      "score": 2.5,
+      "factors": [
+        {
+          "name": "dependencyCount",
+          "weight": 0.5,
+          "description": "Number of dependencies the task has"
+        },
+        {
+          "name": "subtaskCount",
+          "weight": 0.7,
+          "description": "Number of subtasks the task has been broken into"
+        },
+        {
+          "name": "priority",
+          "weight": 1.0,
+          "description": "Priority level of the task"
+        },
+        {
+          "name": "descriptionLength",
+          "weight": 0.3,
+          "description": "Length and detail of the task description"
+        }
+      ]
+    }
+  },
+  {
+    "id": 2,
+    "title": "Implement task data model",
+    "description": "Create TypeScript interfaces for Task and SubTask models with complexity scoring",
+    "status": "in-progress",
+    "dependencies": [1],
+    "priority": "medium",
+    "subtasks": [],
+    "complexity": {
+      "level": "moderate",
+      "score": 3.5,
+      "factors": [
+        {
+          "name": "dependencyCount",
+          "weight": 0.5,
+          "description": "Number of dependencies the task has"
+        },
+        {
+          "name": "technicalComplexity",
+          "weight": 0.8,
+          "description": "Requires knowledge of TypeScript interfaces and type system"
+        },
+        {
+          "name": "priority",
+          "weight": 1.0,
+          "description": "Priority level of the task"
+        }
+      ]
+    }
+  },
+  {
+    "id": 3,
+    "title": "Integrate with GitHub Copilot for complexity assessment",
+    "description": "Develop prompts and interaction model for querying Copilot about task complexity",
+    "status": "pending",
+    "dependencies": [1, 2],
+    "priority": "high",
+    "details": "This task involves creating a service for interacting with the GitHub Copilot API, generating appropriate prompts for complexity assessment, and parsing/processing the responses. We'll need to handle error cases and generate useful feedback.",
+    "testStrategy": "Test with various task types and verify accuracy of complexity scores.",
+    "subtasks": [],
+    "complexity": {
+      "level": "complex",
+      "score": 4.2,
+      "factors": [
+        {
+          "name": "dependencyCount",
+          "weight": 0.5,
+          "description": "Has multiple dependencies"
+        },
+        {
+          "name": "technicalComplexity", 
+          "weight": 1.0,
+          "description": "Requires knowledge of Copilot API and prompting techniques"
+        },
+        {
+          "name": "priority",
+          "weight": 1.0,
+          "description": "High priority increases complexity due to time constraints"
+        },
+        {
+          "name": "uncertaintyFactor",
+          "weight": 0.9,
+          "description": "Integrating with external AI systems introduces unpredictability"
+        }
+      ]
+    }
+  },
+  {
+    "id": 4,
+    "title": "Build UI Tree View for tasks",
+    "description": "Create a VSCode activity bar tree view to display tasks with their complexity scores",
+    "status": "pending",
+    "dependencies": [2],
+    "priority": "medium",
+    "subtasks": [],
+    "complexity": {
+      "level": "veryComplex",
+      "score": 5.0,
+      "factors": [
+        {
+          "name": "dependencyCount",
+          "weight": 0.5,
+          "description": "Depends on task model implementation"
+        },
+        {
+          "name": "technicalComplexity", 
+          "weight": 1.0,
+          "description": "Requires deep knowledge of VSCode extension API"
+        },
+        {
+          "name": "uiComplexity",
+          "weight": 1.0,
+          "description": "Complex UI implementation with states and interactions"
+        },
+        {
+          "name": "testingDifficulty",
+          "weight": 0.8,
+          "description": "UI testing is challenging in VSCode extension context"
+        },
+        {
+          "name": "scopeSize",
+          "weight": 0.9,
+          "description": "Large scope with multiple UI components and interactions"
+        }
+      ]
+    }
+  }
+] 
