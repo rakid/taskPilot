@@ -185,6 +185,14 @@ export function registerTaskCommands(
         subtasks: [],
       };
 
+      // Check if tasks.json exists before adding
+      if (!taskService.tasksFileExists()) {
+        vscode.window.showErrorMessage(
+          "Please run the TaskPilot: Initialize command first",
+        );
+        return;
+      }
+
       const addedTask = taskService.addTask(newTask);
 
       if (addedTask) {
@@ -193,6 +201,7 @@ export function registerTaskCommands(
         );
         treeProvider.refresh();
       } else {
+        // Keep the original error for other potential save failures
         vscode.window.showErrorMessage(`Failed to add task: ${title}`);
       }
     },
